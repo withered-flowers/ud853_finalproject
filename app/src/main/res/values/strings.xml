@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">MainActivity</string>
+    <string name="app_name">UD853 Final Project</string>
+    
+    <!-- ACTIVITY's TITLE HERE -->
+    <string name="activity_title_main">Pop Movies</string>
+    
+    <!-- ACTION MENU NAME HERE -->
+    <string name="action_settings">Setting</string>
 </resources>
