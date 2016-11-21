@@ -7,4 +7,7 @@
     
     <!-- ACTION MENU NAME HERE -->
     <string name="action_settings">Setting</string>
+
+    <!-- DEFAUL STRING HERE -->
+    <string name="default_text_view">TextView</string>
 </resources>

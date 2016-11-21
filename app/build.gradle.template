@@ -23,6 +23,10 @@ android {
     buildTypes.each {
         it.buildConfigField ('String', 'MOVIE_DB_API_KEY_V3', '"INSERT_API_KEY_V3_HERE"')
     }
+
+    lintOptions {
+        abortOnError false
+    }
 }
 
 dependencies {
@@ -33,4 +37,5 @@ dependencies {
     compile 'com.android.support:support-media-compat:25.0.1'
     compile 'com.android.support:support-fragment:25.0.1'
     compile 'com.android.support:appcompat-v7:25.0.1'
+    compile 'com.squareup.picasso:picasso:2.5.2'
 }

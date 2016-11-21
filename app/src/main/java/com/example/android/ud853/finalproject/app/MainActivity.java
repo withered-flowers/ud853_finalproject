@@ -13,12 +13,9 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         if(savedInstanceState == null) {
-            //TODO add fragment for main menu here !
-            /*
             getSupportFragmentManager().beginTransaction()
-                .add(R.id.container, new ForecastFragment())
+                .add(R.id.container, new GridMovieFragment())
                 .commit();
-            */
         }
     }
 
