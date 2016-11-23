@@ -18,15 +18,16 @@
         <item>Popular</item>
         <item>Now Playing</item>
         <item>Upcoming</item>
+        <item>Top Rated</item>
     </string-array>
     <string-array name="pref_movie_sortby_option_values">
         <item>popular</item>
         <item>now_playing</item>
         <item>upcoming</item>
+        <item>top_rated</item>
     </string-array>
     <string name="pref_movie_sortby_option_default_name">Popular</string>
     <string name="pref_movie_sortby_option_default_value">popular</string>
-
 
     <!-- DEFAUL STRING HERE -->
     <string name="default_text_view">TextView</string>
