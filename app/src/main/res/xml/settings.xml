@@ -4,7 +4,7 @@
         android:title="@string/pref_movie_category_title">
         
         <ListPreference
-            android:key="movieSortBy"
+            android:key="@string/pref_movie_sortby_key"
             android:title="@string/pref_movie_sortby_title"
             android:dialogTitle="@string/pref_movie_sortby_title_dialog"
             android:entries="@array/pref_movie_sortby_option_name"

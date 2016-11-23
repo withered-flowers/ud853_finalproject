@@ -11,17 +11,18 @@
 
     <!-- SETTINGS MENU, KEY, AND VALUES HERE -->
     <string name="pref_movie_category_title">Movie Section</string>
+    <string name="pref_movie_sortby_key">movieSortBy</string>
     <string name="pref_movie_sortby_title">Sort By</string>
     <string name="pref_movie_sortby_title_dialog">Which sort ?</string>
     <string-array name="pref_movie_sortby_option_name">
         <item>Popular</item>
-        <item>Latest</item>
         <item>Now Playing</item>
+        <item>Upcoming</item>
     </string-array>
     <string-array name="pref_movie_sortby_option_values">
         <item>popular</item>
-        <item>latest</item>
         <item>now_playing</item>
+        <item>upcoming</item>
     </string-array>
     <string name="pref_movie_sortby_option_default_name">Popular</string>
     <string name="pref_movie_sortby_option_default_value">popular</string>
