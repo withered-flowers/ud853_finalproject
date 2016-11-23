@@ -18,6 +18,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import com.example.android.ud853.finalproject.adapter.MovieObjectAdapter;
 import com.example.android.ud853.finalproject.backend.*;
 
 public class GridMovieFragment extends Fragment {
@@ -63,21 +64,9 @@ public class GridMovieFragment extends Fragment {
                 List<MovieObject> listMovies = resp.body().getDataResults();
 
                 assert listMovies.size() != 0;
-                //TODO Allocate the movie here !
-                String[] arrString = new String[listMovies.size()];
-                int index = 0;
-                for(MovieObject obj : listMovies) {
-                    arrString[index] = String.valueOf(obj.getMovieOriginalTitle());
-                    index++;
-                }
-
-                ArrayAdapter<String> adp = new ArrayAdapter<String>(
-                    getActivity(),
-                    android.R.layout.simple_list_item_1,
-                    arrString
-                );
+                
+                MovieObjectAdapter adp = new MovieObjectAdapter(getActivity(), listMovies);
                 grdMovieList.setAdapter(adp);
-                //ENDOFTODO
 
                 Log.d(LOG_TAG, "Total Film: " + listMovies.size());
                 
