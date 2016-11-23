@@ -6,9 +6,9 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface MovieInterfaces {
-    @GET("movies/{sortBy}")
+    @GET("movie/{sortBy}")
     Call<MovieData> getMoviesBySort(@Path ("sortBy") String sortBy, @Query ("api_key") String apiKey);
 
-    @GET("movies/{id}")
+    @GET("movie/{id}")
     Call<MovieData> getMoviesById(@Path ("id") int id, @Query ("api_key") String apiKey);
 }

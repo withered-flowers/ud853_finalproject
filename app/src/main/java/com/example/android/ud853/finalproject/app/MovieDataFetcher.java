@@ -8,12 +8,14 @@ public class MovieDataFetcher {
     Retrofit theFetcher;
     final String BASE_URL = "https://api.themoviedb.org/3/";
 
-    public Retrofit getFetcher() {
+    public MovieDataFetcher() {
         theFetcher = new Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build();
+    }
 
+    public Retrofit getFetcher() {
         return theFetcher;
     }
 }
