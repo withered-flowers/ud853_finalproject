@@ -31,8 +31,6 @@ public class MovieObjectAdapter extends ArrayAdapter<MovieObject> {
 
         String imageUrl = "http://image.tmdb.org/t/p/w185/";
         Picasso.with(getContext()).load(imageUrl + obj.getMoviePosterPath()).into(movieImage);
-        //TODO Fetch Image here !
-        //movieImage.setImageResource();
 
         return convertView;
     }

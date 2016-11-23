@@ -11,8 +11,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
+import android.widget.Toast;
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -35,7 +38,20 @@ public class GridMovieFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_gridmovie, container, false);
+        
         grdMovieList = (GridView) rootView.findViewById(R.id.grdMovieList);
+        grdMovieList.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                int position, long id) {
+
+                MovieObject obj = (MovieObject) grdMovieList.getAdapter().getItem(position);
+
+                //TODO PASS DATA TO ANOTHER ACTIVITY HERE
+                Toast.makeText(getContext(), obj.getMovieReleaseDate(), Toast.LENGTH_LONG).show();
+            };
+        });   
+
         return rootView;
     }
 
@@ -69,7 +85,6 @@ public class GridMovieFragment extends Fragment {
                 grdMovieList.setAdapter(adp);
 
                 Log.d(LOG_TAG, "Total Film: " + listMovies.size());
-                
             }
 
             @Override
