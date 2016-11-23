@@ -18,6 +18,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import com.example.android.ud853.finalproject.backend.*;
+
 public class GridMovieFragment extends Fragment {
     private static final String LOG_TAG = GridMovieFragment.class.getSimpleName();
 

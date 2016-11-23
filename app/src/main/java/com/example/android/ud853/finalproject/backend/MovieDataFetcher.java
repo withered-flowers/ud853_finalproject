@@ -1,4 +1,4 @@
-package com.example.android.ud853.finalproject.app;
+package com.example.android.ud853.finalproject.backend;
 
 import java.util.List;
 import retrofit2.Retrofit;
