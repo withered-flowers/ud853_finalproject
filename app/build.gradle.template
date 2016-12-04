@@ -22,6 +22,8 @@ android {
     
     buildTypes.each {
         it.buildConfigField ('String', 'MOVIE_DB_API_KEY_V3', '"INSERT_API_KEY_V3_HERE"')
+        it.buildConfigField('String','GITHUB_UNAME' ,'"INSERT_GITHUB_NAME_HERE"')
+        it.buildConfigField('String','GITHUB_ULINK' ,'"INSERT_GITHUB_LINK_HERE"')
     }
 
     lintOptions {

@@ -5,9 +5,11 @@
     <!-- ACTIVITY's TITLE HERE -->
     <string name="activity_title_main">Pop Movies</string>
     <string name="activity_title_settings">Setting</string>
+    <string name="activity_title_about">About This App</string>
     
     <!-- ACTION MENU NAME HERE -->
     <string name="action_settings">Setting</string>
+    <string name="action_about">About This App</string>
 
     <!-- SETTINGS MENU, KEY, AND VALUES HERE -->
     <string name="pref_movie_category_title">Movie Section</string>
@@ -28,7 +30,14 @@
     </string-array>
     <string name="pref_movie_sortby_option_default_name">Popular</string>
     <string name="pref_movie_sortby_option_default_value">popular</string>
+    <string name="textview_about_values">
+        Halaman ini dibuat karena (katanya)\n
+        Tidak boleh menggunakan SnackBar saja\n
+        Copyright %1$s @ 2016\n
+        Github: %2$s
+    </string>
 
-    <!-- DEFAUL STRING HERE -->
+    <!-- DEFAULT STRING HERE -->
     <string name="default_text_view">TextView</string>
+
 </resources>
