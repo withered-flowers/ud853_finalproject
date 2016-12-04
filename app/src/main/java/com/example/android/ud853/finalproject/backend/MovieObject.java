@@ -190,13 +190,11 @@ public class MovieObject implements Parcelable {
 
     //READ TO MOVIEOBJECT
     private MovieObject(Parcel in) {
-        movieGenreIds = new ArrayList<Integer>();
-
         this.moviePosterPath = in.readString();
         this.movieIsAdult = in.readInt() == 1;
         this.movieOverview = in.readString();
         this.movieReleaseDate = in.readString();
-        in.readList(movieGenreIds,List.class.getClassLoader());
+        in.readList(this.movieGenreIds,List.class.getClassLoader());
         this.movieId = in.readInt();
         this.movieOriginalTitle = in.readString();
         this.movieOriginalLanguage = in.readString();
