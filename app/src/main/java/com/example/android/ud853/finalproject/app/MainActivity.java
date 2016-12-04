@@ -3,7 +3,6 @@ package com.example.android.ud853.finalproject.app;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -28,10 +27,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+        Intent i;
 
-        if(id == R.id.action_settings) {
-            Intent i = new Intent(this, SettingsActivity.class);
-            startActivity(i);
+        switch(id) {
+            case (R.id.action_settings):
+                i = new Intent(this, SettingsActivity.class);
+                startActivity(i);
+                break;
         }
 
         return super.onOptionsItemSelected(item);

@@ -7,13 +7,10 @@ import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.Toast;
 import java.util.List;
@@ -28,6 +25,7 @@ public class GridMovieFragment extends Fragment {
     private static final String LOG_TAG = GridMovieFragment.class.getSimpleName();
 
     GridView grdMovieList;
+    Call<MovieData> callMovieData;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -61,6 +59,12 @@ public class GridMovieFragment extends Fragment {
         updateList();
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        callMovieData.cancel();
+    }
+
     private void updateList() {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
         String sortBy = prefs.getString(
@@ -70,7 +74,7 @@ public class GridMovieFragment extends Fragment {
 
         MovieDataFetcher theFetcher = new MovieDataFetcher();
         MovieInterfaces theInterface = theFetcher.getFetcher().create(MovieInterfaces.class);
-        Call<MovieData> callMovieData = theInterface
+        callMovieData = theInterface
             .getMoviesBySort(sortBy, BuildConfig.MOVIE_DB_API_KEY_V3);
         
         callMovieData.enqueue(new Callback<MovieData>() {
