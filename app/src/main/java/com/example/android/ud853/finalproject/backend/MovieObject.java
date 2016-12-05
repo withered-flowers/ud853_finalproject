@@ -49,6 +49,9 @@ public class MovieObject implements Parcelable {
 
     @SerializedName("vote_average")
     private Double movieVoteAverage;
+
+    @SerializedName("runtime")
+    private Integer movieRuntime;
     
     public String getMoviePosterPath() {
         return moviePosterPath;
@@ -162,6 +165,14 @@ public class MovieObject implements Parcelable {
         this.movieVoteAverage = movieVoteAverage;
     }
 
+    public Integer getMovieRuntime() {
+        return movieRuntime;
+    }
+
+    public void setMovieRuntime(Integer movieRuntime) {
+        this.movieRuntime = movieRuntime;
+    }
+
     //------PARCELABLE START HERE------//
     @Override
     public int describeContents() {
@@ -186,7 +197,6 @@ public class MovieObject implements Parcelable {
         out.writeInt(movieIsVideo ? 1 : 0);
         out.writeDouble(movieVoteAverage);
     }
-
 
     //READ TO MOVIEOBJECT
     private MovieObject(Parcel in) {

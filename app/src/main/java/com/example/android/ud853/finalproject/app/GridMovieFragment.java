@@ -45,8 +45,9 @@ public class GridMovieFragment extends Fragment {
 
                 MovieObject obj = (MovieObject) grdMovieList.getAdapter().getItem(position);
 
-                //TODO PASS DATA TO ANOTHER ACTIVITY HERE
-                Toast.makeText(getContext(), obj.getMovieReleaseDate(), Toast.LENGTH_LONG).show();
+                //PASS DATA TO ANOTHER ACTIVITY/FRAGMENT
+                CustomOnChangeSelectionListener listener = (CustomOnChangeSelectionListener) getActivity();
+                listener.onSelectionChange(obj);
             };
         });   
 
@@ -62,7 +63,8 @@ public class GridMovieFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        callMovieData.cancel();
+        if(callMovieData != null)
+            callMovieData.cancel();
     }
 
     private void updateList() {
