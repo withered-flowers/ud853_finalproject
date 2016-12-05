@@ -129,7 +129,7 @@ public class MovieDetailFragment extends Fragment {
 
     private void fillPart01() {
         txtMovieTitle.setText(theMovieObj.getMovieTitle());
-        txtMovieReleaseDate.setText(theMovieObj.getMovieReleaseDate());
+        txtMovieReleaseDate.setText(theMovieObj.getMovieReleaseDate().substring(0,4));
         txtMovieDuration.setText(String.format("%d Minutes", theMovieObj.getMovieRuntime()));
         txtMovieRating.setText(String.format("%s/10", theMovieObj.getMovieVoteAverage().toString()));
         txtMovieOverview.setText(theMovieObj.getMovieOverview());
