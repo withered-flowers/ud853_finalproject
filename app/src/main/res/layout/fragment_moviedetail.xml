@@ -13,7 +13,6 @@
         android:background="#009688"
         android:gravity="center_vertical"
         android:padding="16dp"
-        android:text="TextView"
         android:textColor="#FFFFFF"
         android:textSize="24dp"/>
 
@@ -38,8 +37,9 @@
                     android:id="@+id/imgMovieDetail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    app:srcCompat="@drawable/ic_launcher"/>
+                    android:layout_weight="4"/>
+
+                    <!--app:srcCompat="@drawable/ic_launcher"-->
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -51,35 +51,32 @@
                     <TextView
                         android:id="@+id/txtMovieReleaseDate"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="TextView"/>
+                        android:layout_height="wrap_content"/>
 
                     <TextView
                         android:id="@+id/txtMovieDuration"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="TextView"/>
+                        android:layout_height="wrap_content"/>
 
                     <TextView
                         android:id="@+id/txtMovieRating"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="TextView"/>
+                        android:layout_height="wrap_content"/>
 
                     <Button
                         android:id="@+id/btnMovieFavorite"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Button"/>
+                        android:text="Add to Favorite"
+                        android:visibility="gone"/>
                 </LinearLayout>
 
             </LinearLayout>
 
             <TextView
-                android:text="TextView"
+                android:id="@+id/txtMovieOverview"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/txtMovieOverview"/>
+                android:layout_height="wrap_content"/>
 
             <View
                 android:layout_width="match_parent"

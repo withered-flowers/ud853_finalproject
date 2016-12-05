@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import retrofit2.Call;
@@ -22,6 +23,7 @@ public class MovieDetailFragment extends Fragment {
     View rootView;
     MovieObject theObj;
 
+    Button btnMovieFavorite;
     TextView txtMovieTitle;
     TextView txtMovieReleaseDate;
     TextView txtMovieDuration;
@@ -38,6 +40,7 @@ public class MovieDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_moviedetail, container, false);
 
+        btnMovieFavorite = (Button) rootView.findViewById(R.id.btnMovieFavorite);
         txtMovieTitle = (TextView) rootView.findViewById(R.id.txtMovieTitle);
         txtMovieReleaseDate = (TextView) rootView.findViewById(R.id.txtMovieReleaseDate);
         txtMovieDuration = (TextView) rootView.findViewById(R.id.txtMovieDuration);
@@ -81,7 +84,9 @@ public class MovieDetailFragment extends Fragment {
         txtMovieRating.setText(theObj.getMovieVoteAverage().toString() + "/10");
         txtMovieOverview.setText(theObj.getMovieOverview());
 
-        String imageUrl = "http://image.tmdb.org/t/p/w185/";
+        btnMovieFavorite.setVisibility(View.VISIBLE);
+
+        String imageUrl = "http://image.tmdb.org/t/p/w92/";
         Picasso.with(getContext()).load(imageUrl + theObj.getMoviePosterPath()).into(imgMovieDetail);
     }
 
