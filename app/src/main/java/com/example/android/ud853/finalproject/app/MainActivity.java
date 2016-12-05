@@ -1,7 +1,6 @@
 package com.example.android.ud853.finalproject.app;
 
 import android.content.Intent;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -69,7 +68,6 @@ public class MainActivity extends AppCompatActivity implements CustomOnChangeSel
             MovieDetailFragment fmtMovieDetail_new = new MovieDetailFragment();
             fmtMovieDetail_new.setArguments(b);
 
-            //TODO Add Data Here
             FragmentTransaction fmtTr = getSupportFragmentManager().beginTransaction();
             fmtTr.replace(R.id.fmtContainer, fmtMovieDetail_new);
             fmtTr.addToBackStack(null);

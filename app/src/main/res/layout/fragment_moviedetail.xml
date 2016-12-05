@@ -10,11 +10,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="2"
+        android:minLines="3"
         android:background="#009688"
         android:gravity="center_vertical"
         android:padding="16dp"
         android:textColor="#FFFFFF"
-        android:textSize="24dp"/>
+        android:textSize="24sp"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -81,7 +82,41 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="?android:attr/listDivider"/>
+                android:background="?android:attr/listDivider"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/lytMovieTrailer"
+                android:orientation="vertical">
+
+                <TextView
+                    android:text="Trailers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="?android:attr/listDivider"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/lytMovieReview"
+                android:orientation="vertical">
+
+                <TextView
+                    android:text="Reviews"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
 
         </LinearLayout>
 

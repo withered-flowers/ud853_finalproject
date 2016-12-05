@@ -1,6 +1,5 @@
 package com.example.android.ud853.finalproject.app;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -12,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
-import android.widget.Toast;
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;

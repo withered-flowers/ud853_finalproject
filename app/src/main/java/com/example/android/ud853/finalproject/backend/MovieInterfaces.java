@@ -11,4 +11,10 @@ public interface MovieInterfaces {
 
     @GET("movie/{id}")
     Call<MovieObject> getMoviesById(@Path ("id") int id, @Query ("api_key") String apiKey);
+
+    @GET("movie/{id}/videos")
+    Call<MovieData_Trailers> getTrailerByMovieId(@Path ("id") int id, @Query ("api_key") String apiKey);
+
+    @GET("movie/{id}/reviews")
+    Call<MovieData_Reviews> getReviewByMovieId(@Path ("id") int id, @Query ("api_key") String apiKey);
 }
