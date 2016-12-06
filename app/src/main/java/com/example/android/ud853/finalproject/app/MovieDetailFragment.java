@@ -89,6 +89,17 @@ public class MovieDetailFragment extends Fragment {
         return rootView;
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if(callMovieData != null)
+            callMovieData.cancel();
+        if(callMovieTrailer != null)
+            callMovieTrailer.cancel();
+        if(callMovieComment != null)
+            callMovieComment.cancel();
+    }
+
     private void updateAll(Integer movieId) {
         MovieDataFetcher theFetcher = new MovieDataFetcher();
         MovieInterfaces theInterface = theFetcher.getFetcher().create(MovieInterfaces.class);
