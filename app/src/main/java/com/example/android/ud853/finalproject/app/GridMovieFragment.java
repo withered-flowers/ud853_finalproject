@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
+
+import java.lang.reflect.Type;
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -18,12 +20,17 @@ import retrofit2.Response;
 
 import com.example.android.ud853.finalproject.adapter.MovieObjectAdapter;
 import com.example.android.ud853.finalproject.backend.*;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 public class GridMovieFragment extends Fragment {
     private static final String LOG_TAG = GridMovieFragment.class.getSimpleName();
 
     GridView grdMovieList;
     Call<MovieData> callMovieData;
+
+    Gson gson = new Gson();
+    Type type = new TypeToken<List<MovieObject>>() {}.getType();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -72,29 +79,38 @@ public class GridMovieFragment extends Fragment {
             getString(R.string.pref_movie_sortby_option_default_value)
         );
 
-        MovieDataFetcher theFetcher = new MovieDataFetcher();
-        MovieInterfaces theInterface = theFetcher.getFetcher().create(MovieInterfaces.class);
-        callMovieData = theInterface
-            .getMoviesBySort(sortBy, BuildConfig.MOVIE_DB_API_KEY_V3);
-        
-        callMovieData.enqueue(new Callback<MovieData>() {
-            @Override
-            public void onResponse(Call<MovieData> call, Response<MovieData> resp) {
-                assert resp != null;
-                List<MovieObject> listMovies = resp.body().getDataResults();
+        if(sortBy.equals(getString(R.string.pref_movie_sortby_option_manual_fetch_value))) {
+            String json = prefs.getString(getString(R.string.pref_movie_favorite_key),null);
+            List<MovieObject> theObj = gson.fromJson(json, type);
 
-                assert listMovies.size() != 0;
-                
-                MovieObjectAdapter adp = new MovieObjectAdapter(getActivity(), listMovies);
-                grdMovieList.setAdapter(adp);
+            MovieObjectAdapter adp = new MovieObjectAdapter(getActivity(), theObj);
+            grdMovieList.setAdapter(adp);
+        }
+        else {
+            MovieDataFetcher theFetcher = new MovieDataFetcher();
+            MovieInterfaces theInterface = theFetcher.getFetcher().create(MovieInterfaces.class);
+            callMovieData = theInterface
+                .getMoviesBySort(sortBy, BuildConfig.MOVIE_DB_API_KEY_V3);
 
-                Log.d(LOG_TAG, "Total Film: " + listMovies.size());
-            }
+            callMovieData.enqueue(new Callback<MovieData>() {
+                @Override
+                public void onResponse(Call<MovieData> call, Response<MovieData> resp) {
+                    assert resp != null;
+                    List<MovieObject> listMovies = resp.body().getDataResults();
 
-            @Override
-            public void onFailure(Call<MovieData> call, Throwable t) {
-                Log.e(LOG_TAG, t.toString());
-            }
-        });
+                    assert listMovies.size() != 0;
+
+                    MovieObjectAdapter adp = new MovieObjectAdapter(getActivity(), listMovies);
+                    grdMovieList.setAdapter(adp);
+
+                    Log.d(LOG_TAG, "Total Film: " + listMovies.size());
+                }
+
+                @Override
+                public void onFailure(Call<MovieData> call, Throwable t) {
+                    Log.e(LOG_TAG, t.toString());
+                }
+            });
+        }
     }
 }

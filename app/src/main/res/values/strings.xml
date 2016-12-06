@@ -21,15 +21,18 @@
         <item>Now Playing</item>
         <item>Upcoming</item>
         <item>Top Rated</item>
+        <item>Favorite</item>
     </string-array>
     <string-array name="pref_movie_sortby_option_values">
         <item>popular</item>
         <item>now_playing</item>
         <item>upcoming</item>
         <item>top_rated</item>
+        <item>favorite</item>
     </string-array>
     <string name="pref_movie_sortby_option_default_name">Popular</string>
     <string name="pref_movie_sortby_option_default_value">popular</string>
+    <string name="pref_movie_sortby_option_manual_fetch_value">favorite</string>
     <string name="pref_movie_favorite_key">movieFavorite</string>
     <string name="textview_about_values">
         Halaman ini dibuat karena (katanya)\n

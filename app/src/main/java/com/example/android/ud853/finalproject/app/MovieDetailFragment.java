@@ -2,7 +2,6 @@ package com.example.android.ud853.finalproject.app;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Movie;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
