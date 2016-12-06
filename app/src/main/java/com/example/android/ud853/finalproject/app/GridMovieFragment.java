@@ -13,6 +13,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -83,8 +84,14 @@ public class GridMovieFragment extends Fragment {
             String json = prefs.getString(getString(R.string.pref_movie_favorite_key),null);
             List<MovieObject> theObj = gson.fromJson(json, type);
 
-            MovieObjectAdapter adp = new MovieObjectAdapter(getActivity(), theObj);
-            grdMovieList.setAdapter(adp);
+            if(theObj != null) {
+                MovieObjectAdapter adp = new MovieObjectAdapter(getActivity(), theObj);
+                grdMovieList.setAdapter(adp);
+            }
+            else {
+                MovieObjectAdapter adp = new MovieObjectAdapter(getActivity(), new ArrayList<MovieObject>());
+                grdMovieList.setAdapter(adp);
+            }
         }
         else {
             MovieDataFetcher theFetcher = new MovieDataFetcher();
