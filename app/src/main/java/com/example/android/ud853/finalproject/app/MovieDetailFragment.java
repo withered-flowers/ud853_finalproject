@@ -1,8 +1,12 @@
 package com.example.android.ud853.finalproject.app;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Movie;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,10 +23,14 @@ import retrofit2.Response;
 
 import com.example.android.ud853.finalproject.adapter.MovieObject_ReviewAdapter;
 import com.example.android.ud853.finalproject.adapter.MovieObject_TrailerAdapter;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
 
 import com.example.android.ud853.finalproject.backend.*;
 
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MovieDetailFragment extends Fragment {
@@ -46,6 +54,12 @@ public class MovieDetailFragment extends Fragment {
     TextView txtMovieOverview;
     ImageView imgMovieDetail;
 
+    SharedPreferences prefs;
+    SharedPreferences.Editor prefsEditor;
+
+    Gson gson = new Gson();
+    Type type = new TypeToken<List<MovieObject>>() {}.getType();
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +81,8 @@ public class MovieDetailFragment extends Fragment {
 
         Bundle b = this.getArguments();
         theMovieObj = b.getParcelable("theObj");
+        prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        prefsEditor = prefs.edit();
 
         assert theMovieObj != null;
         updateAll(theMovieObj.getMovieId());
@@ -134,6 +150,13 @@ public class MovieDetailFragment extends Fragment {
         txtMovieRating.setText(String.format("%s/10", theMovieObj.getMovieVoteAverage().toString()));
         txtMovieOverview.setText(theMovieObj.getMovieOverview());
 
+
+        if(checkDataExist() == -1)
+            btnMovieFavorite.setText(getString(R.string.button_favorite_add_values));
+        else
+            btnMovieFavorite.setText(getString(R.string.button_favorite_remove_values));
+
+        btnMovieFavorite.setOnClickListener(btnMovieFavorite_clickListener);
         btnMovieFavorite.setVisibility(View.VISIBLE);
 
         String imageUrl = "http://image.tmdb.org/t/p/w185/";
@@ -165,6 +188,7 @@ public class MovieDetailFragment extends Fragment {
             });
 
             lytMovieTrailer.addView(item);
+            lytMovieTrailer.setVisibility(View.VISIBLE);
         }
     }
 
@@ -180,6 +204,82 @@ public class MovieDetailFragment extends Fragment {
             eachLayout.setClickable(true);
 
             lytMovieReview.addView(item);
+            lytMovieReview.setVisibility(View.VISIBLE);
         }
     }
+
+    private int checkDataExist() {
+        String theData = prefs.getString(getString(R.string.pref_movie_favorite_key), null);
+        if(theData == null)
+            return -1;
+        else {
+            int existPos = -1;
+
+            List<MovieObject> theObj = gson.fromJson(theData, type);
+            for(Integer ctrLoop = 0; ctrLoop < theObj.size(); ctrLoop++) {
+                if(theObj.get(ctrLoop).getMovieId().equals(theMovieObj.getMovieId())) {
+                    existPos = ctrLoop;
+                    break;
+                }
+            }
+
+            return existPos;
+        }
+    }
+
+    private View.OnClickListener btnMovieFavorite_clickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            String json = prefs.getString(getString(R.string.pref_movie_favorite_key), null);
+            List<MovieObject> newObj;
+
+            if(json == null) {
+                newObj = new ArrayList<>();
+                newObj.add(theMovieObj);
+
+                prefsEditor.putString(getString(R.string.pref_movie_favorite_key), gson.toJson(newObj));
+                prefsEditor.commit();
+
+                Snackbar.make(view, "Added to Favorite (New DataSource)", Snackbar.LENGTH_SHORT).show();
+
+                btnMovieFavorite.setText(getString(R.string.button_favorite_remove_values));
+            }
+            else {
+                int existPos = checkDataExist();
+
+                if(existPos != -1) {
+                    //REMOVE FROM LIST
+                    String newJson;
+
+                    newObj = gson.fromJson(json, type);
+
+                    newObj.remove(existPos);
+                    newJson = gson.toJson(newObj);
+
+                    prefsEditor.putString(getString(R.string.pref_movie_favorite_key), newJson);
+                    prefsEditor.commit();
+
+                    Snackbar.make(view, "Removed From DataSource", Snackbar.LENGTH_SHORT).show();
+
+                    btnMovieFavorite.setText(getString(R.string.button_favorite_add_values));
+                }
+                else {
+                    //ADD TO LIST
+                    String newJson;
+
+                    newObj = gson.fromJson(json, type);
+
+                    newObj.add(theMovieObj);
+                    newJson = gson.toJson(newObj);
+
+                    prefsEditor.putString(getString(R.string.pref_movie_favorite_key), newJson);
+                    prefsEditor.commit();
+
+                    Snackbar.make(view, "Added to Favorite (Existing DataSource)", Snackbar.LENGTH_SHORT).show();
+
+                    btnMovieFavorite.setText(getString(R.string.button_favorite_remove_values));
+                }
+            }
+        }
+    };
 }

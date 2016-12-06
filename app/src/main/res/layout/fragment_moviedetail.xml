@@ -26,7 +26,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <LinearLayout
@@ -90,6 +90,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/lytMovieTrailer"
+                android:visibility="gone"
                 android:orientation="vertical">
 
                 <TextView
@@ -109,6 +110,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/lytMovieReview"
+                android:visibility="gone"
                 android:orientation="vertical">
 
                 <TextView

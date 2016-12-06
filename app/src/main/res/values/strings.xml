@@ -30,6 +30,7 @@
     </string-array>
     <string name="pref_movie_sortby_option_default_name">Popular</string>
     <string name="pref_movie_sortby_option_default_value">popular</string>
+    <string name="pref_movie_favorite_key">movieFavorite</string>
     <string name="textview_about_values">
         Halaman ini dibuat karena (katanya)\n
         Tidak boleh menggunakan SnackBar saja\n
@@ -37,6 +38,8 @@
         Github: %2$s\n
         (Titipan) Nama Instruktur: Danviero Yuzwan
     </string>
+    <string name="button_favorite_add_values">Add to Favs</string>
+    <string name="button_favorite_remove_values">Remove from Favs</string>
 
     <!-- DEFAULT STRING HERE -->
     <string name="default_text_view">TextView</string>
